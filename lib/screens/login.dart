@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        style: TextStyle(color: Colors.white),
+                        
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'ymar neg ym bicecee ';
