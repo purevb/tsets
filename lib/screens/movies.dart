@@ -11,7 +11,7 @@ class _MoviesPageState extends State<MoviesPage>{
   @override
   Widget build(BuildContext context){
     return Center(
-      child: Text("Киноны жагсаалт"),
+      child: Text("Киноны жагсаалт",style: TextStyle(color: Colors.white)),
     );
   }
 }

@@ -11,25 +11,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex =0;
-  List<Widget>_totalPage = [MoviesPage(),WishListPage(),ProfilePage()];
-  void _setCurrentIndex(int value){
+  int _currentIndex = 2;
+  List<Widget> _totalPage = [MoviesPage(), WishListPage(), ProfilePage()];
+  void _setCurrentIndex(int value) {
     setState(() {
-      _currentIndex=value;
+      _currentIndex = value;
     });
   }
   // void _switcher(){
   //   setState(() {
-      
+
   //   });
   // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _totalPage[_currentIndex],
+      backgroundColor: Color(0xff0000),
+      body: SafeArea(child: _totalPage[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex:_currentIndex ,
-        onTap:_setCurrentIndex ,
+        selectedItemColor: Colors.black,
+        currentIndex: _currentIndex,
+        onTap: _setCurrentIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.movie), label: "Кино"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Дуртай"),
