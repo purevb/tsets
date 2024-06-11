@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
+import 'package:movie/widgets/movie_card.dart';
 import 'package:movie/widgets/movie_special_card.dart';
 
 class MoviesPage extends StatefulWidget {
@@ -13,20 +14,26 @@ class MoviesPage extends StatefulWidget {
 
 class _MoviesPageState extends State<MoviesPage> {
   Future<List<MovieModel>> _getData() async {
-    String res= await DefaultAssetBundle.of(context).loadString("assets/movies.json");
+    String res =
+        await DefaultAssetBundle.of(context).loadString("assets/movies.json");
     return MovieModel.fromList(jsonDecode(res));
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: _getData(),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            final  _specialData =snapshot.data!.length > 3 ?snapshot.data!.sublist(0, 5) : snapshot.data!;
-            return Column(
+            final _specialData = snapshot.data!.length > 3
+                ? snapshot.data!.sublist(0, 5)
+                : snapshot.data!;
+            return SingleChildScrollView(
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Best movies", style: TextStyle(color: Colors.white)),
+                Text("Best movies",
+                    style: TextStyle(color: Colors.white, fontSize: 25)),
                 SizedBox(
                   height: 200,
                   //\\ width: ,
@@ -38,19 +45,24 @@ class _MoviesPageState extends State<MoviesPage> {
                     ),
                   ),
                 ),
-                Text("All movies", style: TextStyle(color: Colors.white)),
+                Text("All movies",
+                    style: TextStyle(color: Colors.white, fontSize: 25)),
                 Wrap(
-                  children: [],
+                  alignment: WrapAlignment.spaceBetween,
+                  spacing: 10.0,
+                  children: List.generate(snapshot.data!.length,
+                      (index) => MovieCard(snapshot.data![index])),
                 )
               ],
-            );
-          }else{
-              return Center(child: SizedBox(
-                width: 30,
-                height: 30,
-                child: CircularProgressIndicator(),
-              ));
-            }
+            ));
+          } else {
+            return Center(
+                child: SizedBox(
+              width: 30,
+              height: 30,
+              child: CircularProgressIndicator(),
+            ));
+          }
         }));
   }
 }
