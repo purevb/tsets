@@ -1,43 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:movie/providers/common.dart';
 import 'package:movie/screens/movies.dart';
 import 'package:movie/screens/profile.dart';
 import 'package:movie/screens/wishlist.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+ HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  final List<Widget> _totalPage = [MoviesPage(), WishListPage(), ProfilePage()];
 
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 2;
-  List<Widget> _totalPage = [MoviesPage(), WishListPage(), ProfilePage()];
-  void _setCurrentIndex(int value) {
-    setState(() {
-      _currentIndex = value;
-    });
-  }
-  // void _switcher(){
-  //   setState(() {
-
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff0000),
-      body: SafeArea(child: _totalPage[_currentIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.black,
-        currentIndex: _currentIndex,
-        onTap: _setCurrentIndex,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.movie), label: "Кино"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Дуртай"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профайл"),
-        ],
-      ),
-    );
+    return Consumer<CommonProvider>(builder: ((context, provider, child) {
+      return Scaffold(
+        backgroundColor: Color(0xff0000),
+        body: SafeArea(child: _totalPage[provider.currentIdx]),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.black,
+          currentIndex: provider.currentIdx,
+          unselectedItemColor: Color.fromARGB(255, 145, 123, 172),
+          selectedItemColor: Colors.white,
+          onTap: provider.changeCurrentIdx,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.movie,
+              ),
+              label: "Movie", /*  */
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite,
+                ),
+                label: "Favorite"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: "Profile"),
+          ],
+        ),
+      );
+    }));
   }
 }
