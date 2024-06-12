@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:movie/model/index.dart';
 import 'package:movie/providers/common.dart';
 import 'package:movie/widgets/movie_card.dart';
-import 'package:movie/widgets/movie_special_card.dart';
 import 'package:provider/provider.dart';
 
 class WishListPage extends StatelessWidget {

@@ -1,16 +1,27 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:movie/providers/common.dart';
 import 'package:movie/screens/login.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePage extends StatefulWidget{
-  const ProfilePage({super.key});
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
 
-  @override 
-  State<ProfilePage>createState()=>_ProfilePageState();}
+  bool _isLogged = false;
 
-  class _ProfilePageState extends State<ProfilePage>{
-    bool _isLogged = false;
-    @override
-    Widget build(BuildContext context){
-      return LoginPage();
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CommonProvider>(builder: (context, provider, child) {
+      return provider.isLogged
+          ? Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  provider
+                      .Logout(); // Call Logout without expecting a return value
+                },
+                child: Text("Logout"),
+              ),
+            )
+          : LoginPage();
+    });
   }
+}
