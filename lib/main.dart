@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/global_keys.dart';
 import 'package:movie/providers/common.dart';
 import 'package:movie/screens/home.dart';
 import 'package:movie/theme/styles.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => CommonProvider()),
         ],
         child: MaterialApp(
+            navigatorKey: MyGlobalKeys.navigatorKey,
             debugShowCheckedModeBanner: false,
             title: 'Movie',
             home: HomePage()));

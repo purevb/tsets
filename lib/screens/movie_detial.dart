@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
 import 'package:movie/providers/common.dart';
+import 'package:movie/utils/index.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -71,7 +72,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                   ),
                                 ),
                                 Text(
-                                  "${widget.data.publishedYear} | ${widget.data.durationMin} mins | ${widget.data.type}",
+                                  "${widget.data.publishedYear} | ${Utils.integerMinToString(widget.data.durationMin)} mins | ${widget.data.type}",
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 226, 224, 224),
                                     fontSize: 18,

@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:movie/global_keys.dart';
 import 'package:movie/providers/common.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+   LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _phoneCtrl = TextEditingController();
-  final _passCtrl = TextEditingController();
-  void onSubmit() {
-    if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Amjilttai')),
-      );
-      Provider.of<CommonProvider>(context, listen: false).Login();
 
-    }
+  final _phoneCtrl = TextEditingController();
+
+  final _passCtrl = TextEditingController();
+
+  void onSubmit() {
+      Provider.of<CommonProvider>(MyGlobalKeys.navigatorKey.currentContext!, listen: false).Login(); 
   }
 
   @override
