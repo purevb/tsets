@@ -15,7 +15,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (!Provider.of<CommonProvider>(context, listen: false).isLogged) {
+      if (!Provider.of<CommonProvider>(context, listen: false).isLoggedin) {
         Provider.of<CommonProvider>(context, listen: false).changeCurrentIdx(2);
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Nevter")));

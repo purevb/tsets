@@ -6,17 +6,15 @@ import 'package:provider/provider.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  bool _isLogged = false;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CommonProvider>(builder: (context, provider, child) {
-      return provider.isLogged
+      return provider.isLoggedin
           ? Center(
               child: ElevatedButton(
                 onPressed: () {
-                  provider
-                      .Logout(); // Call Logout without expecting a return value
+                  provider.Logout();
                 },
                 child: Text("Logout"),
               ),

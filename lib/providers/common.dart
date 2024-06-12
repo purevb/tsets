@@ -5,7 +5,7 @@ class CommonProvider extends ChangeNotifier {
   List<MovieModel> movies = [];
   List<int> wishListIds = [];
   int currentIdx = 0;
-  bool isLogged = false;
+  bool isLoggedin = false;
   void setMovies(List<MovieModel> data) {
     movies = data;
     notifyListeners();
@@ -32,12 +32,12 @@ class CommonProvider extends ChangeNotifier {
   }
 
   void Login() {
-    isLogged = true;
+    isLoggedin = true;
     notifyListeners();
   }
 
   void Logout() {
-    isLogged = false;
+    isLoggedin = false;
     notifyListeners();
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie/providers/common.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +13,15 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _phoneCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
+  void onSubmit() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Amjilttai')),
+      );
+      Provider.of<CommonProvider>(context, listen: false).Login();
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'ymar neg ym bicecee ';
+                            return 'Buglu ';
                           }
                           return null;
                         },
@@ -64,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "evii2 ym orolldaa";
+                            return "Buglu";
                           }
                           return null;
                         },
@@ -82,13 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.black),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                        }
-                      },
+                      onPressed: onSubmit,
                     ),
                   )
                 ],
